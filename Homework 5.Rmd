@@ -25,9 +25,10 @@ print(numeric_means)
 
 The `apply()` function evaluates a function over the margins of an array or matrix. Here it is used to compute the mean of each numeric column in the dataset.
 
--  penguins[, sapply(penguins, is.numeric)]` selects only the numeric columns from the dataset. `sapply` checks each column with `is.numeric` and returns TRUE or FALSE, and that result keeps only the numeric columns.
+-  `penguins[, sapply(penguins, is.numeric)]` selects only the numeric columns from the dataset. `sapply` checks each column with `is.numeric` and returns TRUE or FALSE, and that result keeps only the numeric columns.
 -  The `2` is the MARGIN argument. It specifies that the function should be applied to columns (use `1` for rows). MARGIN 2 preserves the columns and collapses the rows.
 -  `mean, na.rm = TRUE` calculates the mean for each column, ignoring missing (`NA`) values. `na.rm = TRUE` is passed to `mean` through the `...` argument.
+-  The result is a vector containing the mean of each numeric variable in the dataset.
 
 
 ## Task 2: Count Penguins by Species
@@ -43,6 +44,7 @@ The `tapply()` function is short for table apply, and it applies a function over
 -  The first `penguins$species` is the vector that is split into groups based on unique species values.
 -  The second `penguins$species` specifies the factor to group by.
 -  `length` counts the number of occurrences in each group.
+-  The result is a named vector with species names and their corresponding counts.
 
 ## Task 3: Analyze Bill Length by Species
 *Objective: Use the 'lapply' function to calculate the mean bill length for each species.*
@@ -58,6 +60,7 @@ The `lapply()` function loops over a list of objects and applies a function to e
 -  `split(penguins$bill_length_mm, penguins$species)` splits the bill lengths into separate lists based on species.
 -  `lapply(..., mean, na.rm = TRUE)` applies the `mean()` function to each species' list.
 -  `na.rm = TRUE` ensures missing values (`NA`) are ignored.
+-  The result is a list where each element represents the mean bill length for a species.
 
 
 ## Task 4: Create a Summary Table
@@ -74,4 +77,5 @@ The `sapply()` function is a variant of `lapply` that simplifies the result if p
 
 -  `penguins[, sapply(penguins, is.numeric)]` selects only the numeric columns.
 -  The anonymous function `function(x) c(mean = mean(x, na.rm = TRUE), sd = sd(x, na.rm = TRUE))` calculates both the mean and the standard deviation. An anonymous function is a function that does not have a name, it is written on the fly inside the loop function.
+-  sapply() simplifies the result into a table format, making it easy to read.
 
